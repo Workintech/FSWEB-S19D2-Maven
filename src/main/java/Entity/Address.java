@@ -3,7 +3,6 @@ package Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -11,13 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="address",schema="s19d2")
-public class address {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String street;
-    private int no;
+    private Integer no;
     private String city;
-    private int country;
+    private Integer country;
     private String description;
+    @OneToOne(cascade = CascadeType.ALL , mappedBy = "address")
+    private Customer customer;
 }
